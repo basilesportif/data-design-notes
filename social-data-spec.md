@@ -33,11 +33,11 @@ Nodes are content + metadata.
 This is a tagged union, which can be either:
 * `text`
 * `url`
-* `reference`: a `uid`, which is a tuple of `[resource entity (list time)]
+* `reference`: a `uid`, which is a tuple of `[resource entity index]`, where `index` is a `(list time)`
 
-reference allows linking of content (and hence a node) to a resource and entity. We’ll get to those in a sec, but for now think of it as associating a given node with:
-* an “app” (UrTwitter, UMail, etc)
-* a “shoutout” (@‘ing on Twitter, sending email to recipients, etc)
+`%reference` allows linking of content (and hence a node) to a resource and entity. We’ll get to those in a sec, but this can be used semantically in two main ways:
+1. As an equivalent to a list of email recipients or `@`ing people in Twitter. To do this, give a blank or dummy value for `resource` and `index`--this lets `resource` say WHAT this is (maybe `%urtwitter.mention`) and `entity` represent WHO it's about. 
+2. as a simple reference to another set of nodes, keyed by `resource`/`entity`, i.e. a very rich hyperlink
 
 ### resource
 This is the simplest of the base data types, although it has some room for interpretation. It consists of:
